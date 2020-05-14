@@ -2,38 +2,38 @@ package com.codebrew.service;
 
 import java.util.List;
 
-import com.codebrew.dao.UserDao;
-
-import com.codebrew.models.User;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.codebrew.dao.UserRepository;
+import com.codebrew.models.User;
+
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     //create
     public User create(long id, String firstName, String lastName, String church, int zip, String password,
             String username) {
-        return UserDao.save(new User(id, firstName, lastName, church, zip, password, username));
+        return UserRepository.save(new User(id, firstName, lastName, church, zip, password, username));
     }
 
     //retrieve
     public List<User> getAll() {
-        return userDao.findAll();
+        return userRepository.findAll();
 
     }
 
     //Update
     public User getByFirstName(String firstName) {
-        return userDao.findByFirstName(firstName);
+        return userRepository.findByFirstName(firstName);
     }
 
     public User update(String firstName, String lastName, String church, int zip, String password){
-        User u = userDao.findByFirstName(firstName);
+        User u = userRepository.findByFirstName(firstName);
         u.setLastName(lastName);
         u.setChurch(church);
         u.setZip(zip);
@@ -42,12 +42,12 @@ public class UserService {
 
     //delete
     public void deleteAll(String username) {
-        userDao.deleteAll();
+        userRepository.deleteAll();
     }
 
-    public void delete(String username) {
-        User u = userDao.findByFirstName(firstName);
-        userDao.delete(u);
+    public void delete(String firstName) {
+        User u = userRepository.findByFirstName(firstName);
+        userRepository.delete(u);
     }
 
 }

@@ -2,7 +2,7 @@ package com.codebrew.controllers;
 
 import java.util.List;
 
-import com.codebrew.dao.UserDao;
+import com.codebrew.dao.UserRepository;
 import com.codebrew.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     // create
     @RequestMapping("/create")
     public String create(@RequestParam Long id, @RequestParam String firstName, @RequestParam String lastName,
             @RequestParam String church, @RequestParam int zip, @RequestParam String password,
             @RequestParam String username) {
-        User u = userDao.create(id, firstName, lastName, church, zip, password, username);
+        User u = userRepository.create(id, firstName, lastName, church, zip, password, username);
         return u.toString();
 
     }
