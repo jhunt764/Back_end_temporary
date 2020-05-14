@@ -10,7 +10,7 @@ public class AdminDataAccessService implements AdminDao {
     private static List<Admin> DB = new ArrayList<>();
 
     @Override
-    public int insertAdmin(id, Admin admin) {
+    public int addAdmin(id, Admin admin) {
         DB.add(new Admin());
         return 1;
     }
